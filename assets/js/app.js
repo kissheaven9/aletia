@@ -93,6 +93,9 @@
       go((e.clientX - r.left) < r.width / 2 ? idx - 1 : idx + 1);
     });
     document.addEventListener("keydown", function (e) {
+      // nicht beim Tippen in Suche/Formular blättern
+      var t = e.target, tag = t && t.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || (t && t.isContentEditable)) return;
       if (e.key === "ArrowLeft") go(idx - 1);
       else if (e.key === "ArrowRight") go(idx + 1);
     });
